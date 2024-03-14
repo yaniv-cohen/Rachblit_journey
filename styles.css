@@ -1,0 +1,148 @@
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Adjust max-width for better mobile responsiveness */
+    margin: 0 auto;
+
+}
+
+.input-area {
+    margin-bottom: 20px;
+}
+
+#recordButton{
+    height: 30px;
+    line-height: 0px;
+    padding: 30px;
+    /* margin:5px; */
+    box-sizing: border-box;
+}
+.windows{
+    display: flex;
+    justify-content: space-around;
+}
+#taxiNumber{
+    height: 30px;
+    padding:30px;
+    box-sizing: border-box;
+}
+label {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.history-panel {
+    margin-top: 20px;
+}
+#historyList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:5px;
+    justify-content: space-evenly;
+
+}
+
+
+button#showHistoryButton {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* header */
+header{
+    margin:5px;
+    top:0;
+    padding: 10px;
+    border: 5px white solid;
+    border-radius: 30%;
+background-color: rgba(140,140,140, 0.4);
+
+}
+.title {
+    text-align: center;
+  }
+  
+  .big-word {
+    font-size: 2.5em;
+    color: rgb(255, 255, 255);
+    display: block;
+  }
+  
+  .small-word {
+    font-size: 0.8em;
+    font-weight: 800;
+    color: rgb(210, 115, 205);
+  }
+
+
+body {
+    font-family: "Varela Round", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #87CEEB; /* Sky Blue */
+    direction: rtl;
+    /* font-family: Arial, sans-serif; */
+    padding: 0;
+    flex-direction: column;
+}
+
+.cable-car {
+    position: relative;
+    box-sizing: none;
+}
+
+.cabin {
+    width: 120px;
+    height: 80px;
+    background-color: #34b3e6; /* Gold */
+    border-radius: 30%;
+    position: relative;
+    box-sizing: none;
+}
+
+.windows {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.window {
+    width: 20px;
+    height: 30px;
+    background-color: #c4ecf9; /* Light Blue */
+    border-radius: 4px;
+}
+
+.cable {
+    width: 4px;
+    height: 100%;
+    background-color: #A52A2A; /* Brown */
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
