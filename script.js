@@ -18,8 +18,8 @@ function setHistoryTo(history) {
 function getRachbalHistory() {
   if (localStorage.getItem("rachbal_history")) {
     let history = localStorage.getItem("rachbal_history");
-    console.log(localStorage.getItem("rachbal_history"));
-    console.log(history);
+    // console.log(localStorage.getItem("rachbal_history"));
+    // console.log(history);
     return JSON.parse(history);
   }
   return ([]);
@@ -53,7 +53,13 @@ function recordTaxi() {
     for (const element of history) {
       let pastEntry = element;
       if (pastEntry.id == taxiNumber) {
-        alert("מה הסיכויים? הייונו פה כבר פעם! מספר "+ taxiNumber)
+        let str = "מה הסיכויים? הייונו פה כבר פעם! מספר "+ taxiNumber + '\n פעמים הקודמות שהיינו בו הן: \n' ;
+        for (let index = 0; index < pastEntry.dates.length; index++) {
+          const date =  pastEntry.dates[index];
+          console.log(date.date +" "+ date.date);
+          str+=  new Date(date.date ).toDateString() +' בשעה '+ new Date(date.date ).getHours() +":" + new Date(date.date ).getMinutes()+'\n';
+        }
+        alert( str)
         let nowDate = date.getTime();
         pastEntry.dates.push({ date: nowDate });
         currentAction = {
@@ -134,8 +140,24 @@ function displayHistory() {
         //cabin data structure
         const cabinData = document.createElement("div");
         cabinData.classList = "cabinData";
-        cabinData.textContent = createCabinData(element);
+        // cabinData.textContent = createCabinData(element);
 
+        const cabinNnumberSpan = document.createElement("span");
+        cabinNnumberSpan.classList = "cabinNumberSpan";
+        cabinNnumberSpan.textContent= element.id;
+        cabinData.appendChild(cabinNnumberSpan);
+        const cabinCountSpan = document.createElement("span");
+
+        cabinCountSpan.classList = "cabinCountSpan";
+        let date = new Date(element.dates[0].date);
+        let cabinDatatext = '';
+        cabinDatatext=  ": " + date.getDate()+"." + date.getMonth()+"." +date.getFullYear().toString().slice(2,4) +'\n' ;
+        for (let index = 0; index < element.dates.length; index++) {
+          cabinDatatext+=  '•';
+          
+        }
+        cabinCountSpan.textContent= cabinDatatext
+        cabinData.appendChild(cabinCountSpan);
         cabinDiv.appendChild(cabinData);
         const window1 = document.createElement("div");
         window1.classList = "window";
@@ -156,7 +178,11 @@ function displayHistory() {
 function undoLastAction() {
   let lastActions = getLastActions();
   let lastAction = lastActions[lastActions.length - 1];
-  console.log("lastAction: " + JSON.stringify(lastAction));
+  // console.log("lastAction: " + JSON.stringify(lastAction));
+  if(!lastAction)
+  {
+    return;
+  }
   if (lastAction.type == "create") {
     let history = getRachbalHistory();
     console.log(

@@ -116,7 +116,7 @@ body {
 
 .cabin {
     width: 120px;
-    height: 80px;
+    height: 90px;
     background-color: #34b3e6; /* Gold */
     border-radius: 30%;
     position: relative;
@@ -144,5 +144,17 @@ body {
     left: 50%;
     top: 0;
     transform: translateX(-50%);
+}
+
+
+.cabinNumberSpan{
+    font-size: large;
+    font-weight: 500;
+    color:rgb(15, 15, 15);
+}
+.cabinCountSpan{
+    font-size: small;
+    color:rgb(50, 50, 50);
+
 }
 
