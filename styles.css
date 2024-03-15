@@ -84,13 +84,14 @@ background-color: rgba(140,140,140, 0.4);
   .big-word {
     font-size: 2.5em;
     color: rgb(255, 255, 255);
-    display: block;
+    vertical-align: middle;
   }
   
   .small-word {
     font-size: 0.8em;
     font-weight: 800;
-    color: rgb(210, 115, 205);
+    color: rgb(241, 158, 237);
+    vertical-align: bottom;
   }
 
 
@@ -112,6 +113,7 @@ body {
 .cable-car {
     position: relative;
     box-sizing: none;
+
 }
 
 .cabin {
@@ -121,6 +123,11 @@ body {
     border-radius: 30%;
     position: relative;
     box-sizing: none;
+    /* border: black 4px  solid; */
+    box-shadow: 2px 5px 4px 0px rgba(0,0,0,0.7);
+-webkit-box-shadow: 2px 5px 4px 0px rgba(0,0,0,0.7);
+-moz-box-shadow: 2px 5px 4px 0px rgba(0,0,0,0.7);
+
 }
 
 .windows {
