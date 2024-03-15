@@ -38,7 +38,7 @@ function recordTaxi() {
   const taxiNumber = taxiNumberInput.value.trim();
   const date = new Date();
   let history = getRachbalHistory();
-  console.log(JSON.stringify(history));
+  // console.log(JSON.stringify(history));
 
   if (history.length == 0) {
     console.log("empty history!");
@@ -53,12 +53,13 @@ function recordTaxi() {
     for (const element of history) {
       let pastEntry = element;
       if (pastEntry.id == taxiNumber) {
-        let str = "מה הסיכויים? הייונו פה כבר פעם! מספר "+ taxiNumber + '\n פעמים הקודמות שהיינו בו הן: \n' ;
+        let str = "מה הסיכויים? הייונו פה כבר פעם! " + '\n הפעמים הקודמות שהיינו בו הן: \n' ;
         for (let index = 0; index < pastEntry.dates.length; index++) {
-          const date =  pastEntry.dates[index];
-          console.log(date.date +" "+ date.date);
-          str+=  new Date(date.date ).toDateString() +' בשעה '+ new Date(date.date ).getHours() +":" + new Date(date.date ).getMinutes()+'\n';
+          const date =  new Date(pastEntry.dates[index].date);
+          // console.log(date );
+          str+=  date.getDate()+"." + date.getMonth()+"." +date.getFullYear().toString().slice(2,4) +' בשעה '+ (date ).getHours() +":" + (date ).getMinutes()+'\n';
         }
+        if(pastEntry.dates.length>3) str += '\n סך הכל '+  pastEntry.dates.length +' פעמים! '
         alert( str)
         let nowDate = date.getTime();
         pastEntry.dates.push({ date: nowDate });
@@ -88,7 +89,7 @@ function recordTaxi() {
       });
     }
 
-    console.log(history);
+    // console.log(history);
     // Save updated history to local storage
     setHistoryTo(history);
     setLastActions( [...getLastActions(),currentAction]);
@@ -120,7 +121,7 @@ function displayHistory() {
   if (history.length > 0) {
     //sort the history by date
     // Display history on the page
-    console.log(history);
+    // console.log(history);
 
     for (const element of history) {
       {
@@ -190,9 +191,9 @@ function undoLastAction() {
     );
     for (let i = 0; i < history.length; i++) {
       let entry = history[i];
-      console.log("id: " + entry.id);
+      // console.log("id: " + entry.id);
       if (entry.id == lastAction.payload.id) {
-        console.log("found entry" + JSON.stringify(entry));
+        // console.log("found entry" + JSON.stringify(entry));
         const arrayOfObjects = history.filter(
           (obj) => obj.id !== lastAction.payload.id
         );
@@ -203,14 +204,12 @@ function undoLastAction() {
   }
   if (lastAction.type == "increment") {
     let history = getRachbalHistory();
-    console.log(
-      "was increment! of " + lastAction.payload.id + "  " + history.length
-    );
+
     for (let i = 0; i < history.length; i++) {
       let entry = history[i];
-      console.log("id: " + entry.id);
+      // console.log("id: " + entry.id);
       if (entry.id == lastAction.payload.id) {
-        console.log("found entry" + JSON.stringify(entry));
+        // console.log("found entry" + JSON.stringify(entry));
         history[i].dates.pop();
         setHistoryTo(history);
         break;
@@ -228,14 +227,14 @@ function sortHistoryByDate() {
     sortDirection= -1*sortDirection;
   let history = getRachbalHistory();
 
-  console.log(history);
+  // console.log(history);
   let sortedHistory = history.sort((a, b) => {
-    console.log(a.dates[a.dates.length - 1].date +"  "+ b.dates[b.dates.length - 1].date);
+    // console.log(a.dates[a.dates.length - 1].date +"  "+ b.dates[b.dates.length - 1].date);
     if (a.dates[a.dates.length - 1].date > b.dates[b.dates.length - 1].date)
       return sortDirection;
     return -sortDirection;
   });
-  console.log(sortedHistory);
+  // console.log(sortedHistory);
 
   setHistoryTo(sortedHistory);
   displayHistory();
