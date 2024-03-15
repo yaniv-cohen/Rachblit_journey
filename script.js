@@ -57,7 +57,7 @@ function recordTaxi() {
         for (let index = 0; index < pastEntry.dates.length; index++) {
           const date =  new Date(pastEntry.dates[index].date);
           // console.log(date );
-          str+=  date.getDate()+"." + date.getMonth()+"." +date.getFullYear().toString().slice(2,4) +' בשעה '+ (date ).getHours() +":" + (date ).getMinutes()+'\n';
+          str+=  date.getDate()+"." + (date.getMonth()+1)+"." +date.getFullYear().toString().slice(2,4) +' בשעה '+ (date ).getHours() +":" + (date ).getMinutes()+'\n';
         }
         if(pastEntry.dates.length>3) str += '\n סך הכל '+  pastEntry.dates.length +' פעמים! '
         alert( str)
@@ -152,7 +152,7 @@ function displayHistory() {
         cabinCountSpan.classList = "cabinCountSpan";
         let date = new Date(element.dates[0].date);
         let cabinDatatext = '';
-        cabinDatatext=  ": " + date.getDate()+"." + date.getMonth()+"." +date.getFullYear().toString().slice(2,4) +'\n' ;
+        cabinDatatext=  ": " + date.getDate()+"." + (date.getMonth()+1)+"." +date.getFullYear().toString().slice(2,4) +'\n' ;
         for (let index = 0; index < element.dates.length; index++) {
           cabinDatatext+=  '•';
           
