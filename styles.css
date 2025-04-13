@@ -21,6 +21,16 @@
     /* margin:5px; */
     box-sizing: border-box;
 }
+
+#copyHistoryButton{
+    height: 30px;
+    line-height: 0px;
+    padding: 30px;
+    /* margin:5px; */
+    box-sizing: border-box;
+    
+    cursor: grab;
+}
 .windows{
     display: flex;
     justify-content: space-around;

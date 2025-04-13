@@ -1,7 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
+  checkAndAlertBackup();
   displayHistory();
 });
 
+function checkAndAlertBackup(){
+  const SEVEN_DAYS_IN_MS = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+
+  let lastBackup = localStorage.getItem("lastBackup");
+  const currentDate = new Date();
+  
+  if (!lastBackup || (currentDate.getTime() - new Date(lastBackup).getTime() >= SEVEN_DAYS_IN_MS)) {
+    alert("Please backup now!");
+  }
+}
 // history[]
 /* entry: {
 id: numer,
@@ -12,7 +23,6 @@ rank :0
 
 function setHistoryTo(history) {
 //   localStorage.setItem("rachbal_history", JSON.stringify([]));
-
   localStorage.setItem("rachbal_history", JSON.stringify(history));
 }
 function getRachbalHistory() {
@@ -250,4 +260,50 @@ function sortHistoryByCount(){
     });
     setHistoryTo(sortedHistory);
     displayHistory();
+}
+
+
+function copyHistoryToClipboard() {
+  // Get the text field
+
+  let copyText = (localStorage.getItem("rachbal_history"));
+  const currentDate = new Date();
+  localStorage.setItem("lastBackup", currentDate.toISOString());
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText);
+}
+
+
+async function loadHistoryFromClipboard() {
+  try {
+    // Check if clipboard API is available
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      throw new Error("Clipboard API not supported in this browser");
+    }
+
+    // Read clipboard text
+    const clipboardText = await navigator.clipboard.readText();
+    
+    if (!clipboardText.trim()) {
+      alert("הלוח ריק או מכיל רק רווחים");
+      return;
+    }
+    
+    console.log("Text loaded from clipboard:", clipboardText);
+    alert("טקסט שהועתק: " + clipboardText);
+    // localStorage.setItem("rachbal_history")
+  localStorage.setItem("rachbal_history", clipboardText);
+displayHistory();
+    // Here you would typically do something with the text
+    // For example: document.getElementById("someInput").value = clipboardText;
+    
+  } catch (error) {
+    console.error("שגיאה בטעינה מהלוח:", error);
+    
+    if (error.message.includes("permission") || error.name === "NotAllowedError") {
+      alert("נדרש אישור גישה ללוח. אנא אשר את הבקשה.");
+    } else {
+      alert("לא ניתן לגשת ללוח: " + error.message);
+    }
+  }
 }
