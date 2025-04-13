@@ -35,7 +35,12 @@
         <div class="input-area ">
             <!-- <label for="taxiNumber">הכניסי מספר:</label> -->
             <input type="number" id="taxiNumber" placeholder="מספר קרון...">
-            <button  class="button-19" role="button"  id ="recordButton" onclick="recordTaxi()">סעי!</button>
+            <div >
+                <button  class="button-19" role="button"  id ="recordButton" onclick="recordTaxi()">סעי!</button>
+                <button  class="button-19" role="button"  
+                id ="copyHistoryButton" onclick="copyHistoryToClipboard()">העתיקי ושילחי</button>
+            </div>
+
         </div>
         <div class="history-panel">
             <h2>הרפתקאות העבר:</h2>
@@ -43,6 +48,8 @@
             <button  class="button-19" role="button" id="sortHistoryByDate" onclick="sortHistoryByDate()">תאריך</button>
             <button  class="button-19" role="button" id="sortHistoryByDate" onclick="sortHistoryByCount()">ניקוד</button>
             <ul id="historyList"></ul>
+            <button  class="button-19" role="button"  
+                id ="loadHistoryButton" onclick=" loadHistoryFromClipboard()">טעני מהודעה:</button>
         </div>
 
     </div>
