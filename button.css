@@ -64,3 +64,11 @@
   border-width: 4px 0 0;
   background: none;
 }
+
+.button-19.red {
+  background-color: #fc093a;  /* Different color */
+}
+
+.button-19.red:after {
+  background-color: #fc093a;  /* Matching different color for the effect */
+}
