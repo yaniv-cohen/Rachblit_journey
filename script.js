@@ -10,7 +10,12 @@ function checkAndAlertBackup(){
   const currentDate = new Date();
   
   if (!lastBackup || (currentDate.getTime() - new Date(lastBackup).getTime() >= SEVEN_DAYS_IN_MS)) {
-    alert("Please backup now!");
+    //change button color
+    document.getElementById("copyHistoryButton").classList.add("red");
+  }
+  else{
+    document.getElementById("copyHistoryButton").classList.remove("red");
+
   }
 }
 // history[]
@@ -269,6 +274,7 @@ function copyHistoryToClipboard() {
   let copyText = (localStorage.getItem("rachbal_history"));
   const currentDate = new Date();
   localStorage.setItem("lastBackup", currentDate.toISOString());
+  checkAndAlertBackup();
    // Copy the text inside the text field
   navigator.clipboard.writeText(copyText);
 }
@@ -290,7 +296,6 @@ async function loadHistoryFromClipboard() {
     }
     
     console.log("Text loaded from clipboard:", clipboardText);
-    alert("טקסט שהועתק: " + clipboardText);
     // localStorage.setItem("rachbal_history")
   localStorage.setItem("rachbal_history", clipboardText);
 displayHistory();
