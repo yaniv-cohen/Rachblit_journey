@@ -277,6 +277,7 @@ function copyHistoryToClipboard() {
   checkAndAlertBackup();
    // Copy the text inside the text field
   navigator.clipboard.writeText(copyText);
+  document.getElementById("copyTextArea").textContent = copyText;
 }
 
 
