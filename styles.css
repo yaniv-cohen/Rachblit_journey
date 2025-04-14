@@ -13,6 +13,10 @@
 .input-area {
     margin-bottom: 20px;
 }
+#copyTextArea{
+    direction:ltr; 
+    user-select: all;
+}
 
 #recordButton{
     height: 30px;
